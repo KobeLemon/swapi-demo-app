@@ -7,7 +7,7 @@ const planetTemplateFunc = (planet) => {
     `<div class="tile">
         <img class="planetImg" src="../placeholder75x75.png" alt="Picture of ${planet.name}">
         <p class="planetName">${planet.name}</p>
-        <p class="planetday">Day: ${planet.rotation_period} hours</p>
+        <p class="planetDay">Day: ${planet.rotation_period} hours</p>
         <p class="planetYear">Year: ${planet.orbital_period} days</p>
         <p class="planetDiameter">Diameter: ${planet.diameter} km</p>
         <p class="planetClimate">Climate: ${capitalizeSentence(planet.climate)}</p>
