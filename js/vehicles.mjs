@@ -1,5 +1,4 @@
-import { capitalizeSentence, renderApiInfo } from "./utils.mjs"
-
+import { capitalizeSentence, renderApiInfo } from "./utils.mjs";
 let template = '';
 
 const vehicleTemplateFunc = (vehicle) => {
@@ -14,10 +13,9 @@ const vehicleTemplateFunc = (vehicle) => {
         <p class="vehicleMaxAtmosSpd">Max Atmosphering Speed: ${vehicle.max_atmosphering_speed} MPH</p>
         <p class="vehicleCrew">Crew Capacity: ${vehicle.crew}</p>
         <p class="vehicleCargo">Cargo Capacity: ${vehicle.cargo_capacity}</p>
-        <p class="vehicleConsumables">Consumables Capacity: ${vehicle.consumables}</p>
+        <p class="vehicleFood">Food Capacity: ${vehicle.consumables}</p>
         <p class="vehicleClass">Class: ${capitalizeSentence(vehicle.vehicle_class)}</p>
     </div>`
 }
 
 renderApiInfo('https://swapi.dev/api/vehicles', vehicleTemplateFunc);
-200666858
