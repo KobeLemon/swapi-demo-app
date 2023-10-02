@@ -17,4 +17,4 @@ const planetTemplateFunc = (planet) => {
     </div>`
 }
 
-renderApiInfo('https://swapi.dev/api/planets', planetTemplateFunc)
+renderApiInfo('https://swapi.dev/api/planets', planetTemplateFunc);

@@ -18,4 +18,4 @@ const speciesTemplateFunc = (species) => {
     </div>`
 }
 
-renderApiInfo('https://swapi.dev/api/species', speciesTemplateFunc)
+renderApiInfo('https://swapi.dev/api/species', speciesTemplateFunc);

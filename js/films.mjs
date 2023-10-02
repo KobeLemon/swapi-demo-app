@@ -15,4 +15,4 @@ const filmTemplateFunc = (film) => {
     </div>`
 }
 
-renderApiInfo('https://swapi.dev/api/films', filmTemplateFunc)
+renderApiInfo('https://swapi.dev/api/films', filmTemplateFunc);

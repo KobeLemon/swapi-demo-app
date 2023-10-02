@@ -25,4 +25,4 @@ const personTemplateFunc = (person) => {
     </div>`;
 };
 
-renderApiInfo('https://swapi.dev/api/people', personTemplateFunc)
+renderApiInfo('https://swapi.dev/api/people', personTemplateFunc);
