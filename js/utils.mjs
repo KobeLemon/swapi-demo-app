@@ -1,16 +1,20 @@
-export function renderWithTemplate (parentIDClass, dataArray, callLocation = "No callLocation given") {
-    console.log(`Entered ${callLocation} renderWithTemplate ${parentIDClass}`);
 
-    if (!parentIDClass) {
-        alert(`${callLocation} renderWithTemplate Wrong ID or Class: ${parentIDClass}`);
-    }
-    const parentLocation = document.querySelector(parentIDClass);
+export const headerRender = (location) => {
+    const parentLocation = document.querySelector('header');
 
-    // If the parentLocation already has something displayed, this clears that so we can start over with a blank page
-    // parentLocation.innerHTML = "";
-    // console.log(`${callLocation} renderWithTemplate parentLocation cleared`);
+    let template =
+        `<h1>${location} of Star Wars</h1>
+        <nav>
+            <a href="../index.html"><h2>Home</h2></a>
+            <a href="../people/"><h2>People</h2></a>
+            <a href="../planets/"><h2>Planets</h2></a>
+            <a href="../films/"><h2>Films</h2></a>
+            <a href="../species/"><h2>Species</h2></a>
+            <a href="../vehicles/"><h2>Vehicles</h2></a>
+            <a href="../starships/"><h2>Starships</h2></a>
+        </nav>`;
 
-    parentLocation.insertAdjacentHTML('afterbegin', dataArray);
+    parentLocation.insertAdjacentHTML('afterbegin', template);
 }
 
 export async function apiFetch(url) {

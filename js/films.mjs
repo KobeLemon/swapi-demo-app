@@ -1,4 +1,4 @@
-import { capitalizeSentence, renderApiInfo } from "./utils.mjs";
+import { capitalizeSentence, renderApiInfo, headerRender } from "./utils.mjs";
 
 let template = '';
 
@@ -15,4 +15,5 @@ const filmTemplateFunc = (film) => {
     </div>`
 }
 
-renderApiInfo('https://swapi.dev/api/films', filmTemplateFunc);
+headerRender('Films');
+await renderApiInfo('https://swapi.dev/api/films', filmTemplateFunc);

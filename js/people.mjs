@@ -1,4 +1,4 @@
-import { capitalizeSentence, renderApiInfo } from './utils.mjs';
+import { capitalizeSentence, renderApiInfo, headerRender } from './utils.mjs';
 
 let template = '';
 let yearTitle = '';
@@ -25,4 +25,5 @@ const personTemplateFunc = (person) => {
     </div>`;
 };
 
+headerRender('People');
 renderApiInfo('https://swapi.dev/api/people', personTemplateFunc);
