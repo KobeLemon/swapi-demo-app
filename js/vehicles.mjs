@@ -1,7 +1,14 @@
-import { capitalizeSentence, renderApiInfo, headerRender } from "./utils.mjs";
+import { headerRender, apiFetch, renderApiInfo, capitalizeSentence } from './utils.mjs';
+headerRender('Vehicles');
+
 let template = '';
 
-const vehicleTemplateFunc = (vehicle) => {
+const apiInfo = await apiFetch('https://swapi.dev/api/vehicles');
+// console.log(apiInfo);
+
+renderApiInfo(apiInfo, vehicleTemplateFunc);
+
+function vehicleTemplateFunc(vehicle) {
     return template = 
     `<div class="tile">
         <img class="vehicleImg" src="../placeholder75x75.png" alt="Picture of ${capitalizeSentence(vehicle.name)}">
@@ -17,6 +24,3 @@ const vehicleTemplateFunc = (vehicle) => {
         <p class="vehicleClass">Class: ${capitalizeSentence(vehicle.vehicle_class)}</p>
     </div>`
 }
-
-headerRender('Vehicles');
-renderApiInfo('https://swapi.dev/api/vehicles', vehicleTemplateFunc);

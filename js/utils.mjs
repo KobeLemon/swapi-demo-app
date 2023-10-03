@@ -1,7 +1,9 @@
 
-export const headerRender = (location) => {
-    const parentLocation = document.querySelector('header');
-
+export function headerRender(location) {
+    const parentLocation = document.querySelector('#header');
+    const contentBox = document.querySelector('.contentBox');
+    contentBox.innerHTML = '<em>Loading...</em>';
+    
     let template =
         `<h1>${location} of Star Wars</h1>
         <nav>
@@ -32,18 +34,23 @@ export async function apiFetch(url) {
     }
 }
 
-export async function renderApiInfo(url, templateFunc) {
-    const parentLocation = document.querySelector('.contentBox');
-    parentLocation.innerHTML = '<em>Loading...</em>';
-    const apiInfo = await apiFetch(url);
-    parentLocation.innerHTML = '',
+export function renderApiInfo(apiInfo, templateFunc) {
+    // console.log(apiInfo);
+    const contentBox = document.querySelector('.contentBox');
 
-    apiInfo.results.forEach((person) => {
-        console.log(person);
-        const template = templateFunc(person);
+    contentBox.innerHTML = '';
+
+    // FROM WORD DOC, ADD PAGESBOX W/ BTNS CODE HERE & TO ALL INDEX.HTMLS EXCEPT HOME PAGE
+
+    apiInfo.results.forEach((item) => {
+        console.log(item);
+        const template = templateFunc(item);
         console.log(template);
-        parentLocation.insertAdjacentHTML('beforeend', template);
+        contentBox.insertAdjacentHTML('beforeend', template);
     });
+    const backToTopBtn = '<button>Back To Top</button>';
+    contentBox.insertAdjacentHTML('beforeend', backToTopBtn);
+    document.addEventListener('click', () => {document.querySelector('#header').scrollIntoView({behavior: "smooth"})});
 }
 
 export function capitalizeSentence(sentence) {

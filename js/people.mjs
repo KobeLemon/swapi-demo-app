@@ -1,10 +1,16 @@
-import { capitalizeSentence, renderApiInfo, headerRender } from './utils.mjs';
+import { headerRender, apiFetch, renderApiInfo, capitalizeSentence } from './utils.mjs';
+headerRender('People');
 
 let template = '';
 let yearTitle = '';
 const naArray = ['n/a', 'N/a,', 'n/A', 'N/A', 'na', 'NA']
 
-const personTemplateFunc = (person) => {
+const apiInfo = await apiFetch('https://swapi.dev/api/people');
+// console.log(apiInfo);
+
+renderApiInfo(apiInfo, personTemplateFunc);
+
+function personTemplateFunc(person) {
     if (naArray.includes(person.gender)) {
         yearTitle = "Year of Creation:"
     } else {
@@ -24,6 +30,3 @@ const personTemplateFunc = (person) => {
         <p class="personGender">Gender: ${capitalizeSentence(person.gender)}</p>
     </div>`;
 };
-
-headerRender('People');
-renderApiInfo('https://swapi.dev/api/people', personTemplateFunc);

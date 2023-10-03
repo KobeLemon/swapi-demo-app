@@ -1,8 +1,14 @@
-import { capitalizeSentence, renderApiInfo, headerRender } from "./utils.mjs";
+import { headerRender, apiFetch, renderApiInfo, capitalizeSentence } from './utils.mjs';
+headerRender('Films');
 
 let template = '';
 
-const filmTemplateFunc = (film) => {
+const apiInfo = await apiFetch('https://swapi.dev/api/films');
+// console.log(apiInfo);
+
+renderApiInfo(apiInfo, filmTemplateFunc);
+
+function filmTemplateFunc(film) {
     return template = 
     `<div class="tile">
         <img class="filmImg" src="../placeholder75x75.png" alt="Picture of ${film.name}">
@@ -14,6 +20,3 @@ const filmTemplateFunc = (film) => {
         <p class="filmOpeningCrawl">Opening Crawl: <br>${film.opening_crawl}</p>
     </div>`
 }
-
-headerRender('Films');
-await renderApiInfo('https://swapi.dev/api/films', filmTemplateFunc);
