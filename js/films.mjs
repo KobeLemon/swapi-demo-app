@@ -1,12 +1,26 @@
-import { headerRender, apiFetch, renderApiInfo, capitalizeSentence } from './utils.mjs';
+import { headerRender, apiFetch, renderApiInfo, changePage } from './utils.mjs';
 headerRender('Films');
 
-let template = '';
+let template;
+const contentBox = document.querySelector('.contentBox');
+console.log(contentBox);
 
-const apiInfo = await apiFetch('https://swapi.dev/api/films');
-// console.log(apiInfo);
+let pageCounter = 1;
+let apiURL = (pageNumber) => `https://swapi.dev/api/films/?page=${pageNumber}`;
 
-renderApiInfo(apiInfo, filmTemplateFunc);
+let firstApiInfo = await apiFetch(apiURL(1));
+renderApiInfo(firstApiInfo, filmTemplateFunc);
+
+const previousPageBtn = document.querySelector('#previousPage');
+const nextPageBtn = document.querySelector('#nextPage');
+
+nextPageBtn.addEventListener('click', async () => {
+    changePage(pageCounter += 1, apiURL, filmTemplateFunc);
+});
+
+previousPageBtn.addEventListener('click', async () => {
+    changePage(pageCounter -= 1, apiURL, filmTemplateFunc);
+});
 
 function filmTemplateFunc(film) {
     return template = 

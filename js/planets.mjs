@@ -1,12 +1,26 @@
-import { headerRender, apiFetch, renderApiInfo, capitalizeSentence } from './utils.mjs';
+import { headerRender, apiFetch, renderApiInfo, changePage, capitalizeSentence } from './utils.mjs';
 headerRender('Planets');
 
-let template = '';
+let template;
+const contentBox = document.querySelector('.contentBox');
+console.log(contentBox);
 
-const apiInfo = await apiFetch('https://swapi.dev/api/planets');
-// console.log(apiInfo);
+let pageCounter = 1;
+let apiURL = (pageNumber) => `https://swapi.dev/api/planets/?page=${pageNumber}`;
 
-renderApiInfo(apiInfo, planetTemplateFunc);
+let firstApiInfo = await apiFetch(apiURL(1));
+renderApiInfo(firstApiInfo, planetTemplateFunc);
+
+const previousPageBtn = document.querySelector('#previousPage');
+const nextPageBtn = document.querySelector('#nextPage');
+
+nextPageBtn.addEventListener('click', async () => {
+    changePage(pageCounter += 1, apiURL, planetTemplateFunc);
+});
+
+previousPageBtn.addEventListener('click', async () => {
+    changePage(pageCounter -= 1, apiURL, planetTemplateFunc);
+});
 
 function planetTemplateFunc(planet) {
     return template = 

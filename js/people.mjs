@@ -1,14 +1,28 @@
-import { headerRender, apiFetch, renderApiInfo, capitalizeSentence } from './utils.mjs';
+import { headerRender, apiFetch, renderApiInfo, changePage, capitalizeSentence } from './utils.mjs';
 headerRender('People');
 
-let template = '';
-let yearTitle = '';
-const naArray = ['n/a', 'N/a,', 'n/A', 'N/A', 'na', 'NA']
+let template;
+let yearTitle;
+const naArray = ['n/a', 'N/a,', 'n/A', 'N/A', 'na', 'NA'];
+const contentBox = document.querySelector('.contentBox');
+console.log(contentBox);
 
-const apiInfo = await apiFetch('https://swapi.dev/api/people');
-// console.log(apiInfo);
+let pageCounter = 1;
+let apiURL = (pageNumber) => `https://swapi.dev/api/people/?page=${pageNumber}`;
 
-renderApiInfo(apiInfo, personTemplateFunc);
+let firstApiInfo = await apiFetch(apiURL(1));
+renderApiInfo(firstApiInfo, personTemplateFunc);
+
+const previousPageBtn = document.querySelector('#previousPage');
+const nextPageBtn = document.querySelector('#nextPage');
+
+nextPageBtn.addEventListener('click', async () => {
+    changePage(pageCounter += 1, apiURL, personTemplateFunc);
+});
+
+previousPageBtn.addEventListener('click', async () => {
+    changePage(pageCounter -= 1, apiURL, personTemplateFunc);
+});
 
 function personTemplateFunc(person) {
     if (naArray.includes(person.gender)) {
