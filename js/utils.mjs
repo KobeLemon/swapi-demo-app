@@ -2,7 +2,6 @@ const contentBox = document.querySelector('.contentBox');
 
 export function headerRender(location) {
     const parentLocation = document.querySelector('#header');
-    contentBox.innerHTML = `<em>Loading Page # 1...</em>`;
     
     let template =
         `<h1>${location} of Star Wars</h1>
@@ -18,6 +17,17 @@ export function headerRender(location) {
 
     parentLocation.insertAdjacentHTML('afterbegin', template);
 }
+
+export async function buildContent(apiURL, firstApiInfo, templateFunc, pageCounter) {
+    firstApiInfo = await apiFetch(apiURL(1));
+    renderApiInfo(firstApiInfo, templateFunc);
+    document.querySelector('#nextPage').addEventListener('click', async () => {
+        changePage(pageCounter += 1, apiURL, templateFunc);
+    });
+
+    document.querySelector('#previousPage').addEventListener('click', async () => {
+        changePage(pageCounter -= 1, apiURL, templateFunc);
+    });}
 
 export async function apiFetch(url) {
     // console.log(url);
@@ -43,19 +53,12 @@ export function renderApiInfo(apiInfo, templateFunc) {
     // console.log(`next page: ${apiInfo.next}`);
 
     contentBox.innerHTML = '';
-    console.log(apiInfo);
-    console.log(apiInfo.previous);
-    console.log(document.querySelector('#previousPage'))
-    // console.log(document.querySelector('#previousPage').classList.remove('displayNone'));
 
     if (apiInfo.previous !== null) {
-        document.querySelector('#previousPage').classList.toggle('displayNone');
-        // document.querySelector('#nextPage').classList.toggle('displayNone');
-    }  
-    if (apiInfo.next == null) {
-        // document.querySelector('#previousPage').classList.remove('displayNone');
-        document.querySelector('#nextPage').classList.toggle('displayNone');
-    }
+        document.querySelector('#previousPage').classList.toggle('displayNone');    }  
+        if (apiInfo.next == null) {
+            document.querySelector('#nextPage').classList.toggle('displayNone');
+        }
 
     apiInfo.results.forEach((item) => {
         // console.log('apiInfoResults foreach:');
