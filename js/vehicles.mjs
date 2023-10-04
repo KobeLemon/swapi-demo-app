@@ -1,31 +1,28 @@
 import { headerRender, apiFetch, renderApiInfo, changePage, capitalizeSentence } from './utils.mjs';
 headerRender('Vehicles');
 
-let template;
-const contentBox = document.querySelector('.contentBox');
-console.log(contentBox);
-
 let pageCounter = 1;
-let apiURL = (pageNumber) => `https://swapi.dev/api/vehicles/?page=${pageNumber}`;
 
-let firstApiInfo = await apiFetch(apiURL(1));
-renderApiInfo(firstApiInfo, vehicleTemplateFunc);
+main(vehicleTemplateFunc);
 
-const previousPageBtn = document.querySelector('#previousPage');
-const nextPageBtn = document.querySelector('#nextPage');
+async function main(template) {
+    let apiURL = (pageNumber) => `https://swapi.dev/api/vehicles/?page=${pageNumber}`;
 
-nextPageBtn.addEventListener('click', async () => {
-    changePage(pageCounter += 1, apiURL, vehicleTemplateFunc);
-});
+    let firstApiInfo = await apiFetch(apiURL(1));
+    renderApiInfo(firstApiInfo, vehicleTemplateFunc);
 
-previousPageBtn.addEventListener('click', async () => {
-    changePage(pageCounter -= 1, apiURL, vehicleTemplateFunc);
-});
+    document.querySelector('#nextPage').addEventListener('click', async () => {
+        changePage(pageCounter += 1, apiURL, vehicleTemplateFunc);
+    });
+
+    document.querySelector('#previousPage').addEventListener('click', async () => {
+        changePage(pageCounter -= 1, apiURL, vehicleTemplateFunc);
+    });
+}
 
 function vehicleTemplateFunc(vehicle) {
-    return template = 
-    `<div class="tile">
-        <img class="vehicleImg" src="../placeholder75x75.png" alt="Picture of ${capitalizeSentence(vehicle.name)}">
+    return `<div class="tile">
+        <!-- <img class="vehicleImg" src="../placeholder75x75.png" alt="Picture of ${vehicle.name}"> -->
         <p class="vehicleName">${capitalizeSentence(vehicle.name)}</p>
         <p class="vehicleModel">Model: ${capitalizeSentence(vehicle.model)}</p>
         <p class="vehicleManufacturer">Manufacturer: ${capitalizeSentence(vehicle.manufacturer)}</p>

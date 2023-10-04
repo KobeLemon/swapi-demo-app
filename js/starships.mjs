@@ -1,31 +1,28 @@
 import { headerRender, apiFetch, renderApiInfo, changePage, capitalizeSentence } from './utils.mjs';
 headerRender('Starships');
 
-let template;
-const contentBox = document.querySelector('.contentBox');
-console.log(contentBox);
-
 let pageCounter = 1;
-let apiURL = (pageNumber) => `https://swapi.dev/api/starships/?page=${pageNumber}`;
 
-let firstApiInfo = await apiFetch(apiURL(1));
-renderApiInfo(firstApiInfo, starshipTemplateFunc);
+main(starshipTemplateFunc);
 
-const previousPageBtn = document.querySelector('#previousPage');
-const nextPageBtn = document.querySelector('#nextPage');
+async function main(template) {
+    let apiURL = (pageNumber) => `https://swapi.dev/api/starships/?page=${pageNumber}`;
 
-nextPageBtn.addEventListener('click', async () => {
-    changePage(pageCounter += 1, apiURL, starshipTemplateFunc);
-});
+    let firstApiInfo = await apiFetch(apiURL(1));
+    renderApiInfo(firstApiInfo, starshipTemplateFunc);
 
-previousPageBtn.addEventListener('click', async () => {
-    changePage(pageCounter -= 1, apiURL, starshipTemplateFunc);
-});
+    document.querySelector('#nextPage').addEventListener('click', async () => {
+        changePage(pageCounter += 1, apiURL, starshipTemplateFunc);
+    });
+
+    document.querySelector('#previousPage').addEventListener('click', async () => {
+        changePage(pageCounter -= 1, apiURL, starshipTemplateFunc);
+    });
+}
 
 function starshipTemplateFunc(starship) {
-    return template =
-        `<div class="tile">
-            <img class="starshipImg" src="../placeholder75x75.png" alt="Picture of ${capitalizeSentence(starship.name)}">
+    return `<div class="tile">
+        <!-- <img class="starshipImg" src="../placeholder75x75.png" alt="Picture of ${starship.name}"> -->
             <p class="starshipName">${capitalizeSentence(starship.name)}</p>
             <p class="starshipModel">Model: ${capitalizeSentence(starship.model)}</p>
             <p class="starshipManufacturer">Manufacturer: ${capitalizeSentence(starship.manufacturer)}</p>

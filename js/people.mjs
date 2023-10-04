@@ -1,28 +1,27 @@
 import { headerRender, apiFetch, renderApiInfo, changePage, capitalizeSentence } from './utils.mjs';
 headerRender('People');
 
-let template;
 let yearTitle;
 const naArray = ['n/a', 'N/a,', 'n/A', 'N/A', 'na', 'NA'];
-const contentBox = document.querySelector('.contentBox');
-console.log(contentBox);
-
 let pageCounter = 1;
-let apiURL = (pageNumber) => `https://swapi.dev/api/people/?page=${pageNumber}`;
 
-let firstApiInfo = await apiFetch(apiURL(1));
-renderApiInfo(firstApiInfo, personTemplateFunc);
+main(personTemplateFunc);
 
-const previousPageBtn = document.querySelector('#previousPage');
-const nextPageBtn = document.querySelector('#nextPage');
+async function main(template) {
+    let apiURL = (pageNumber) => `https://swapi.dev/api/people/?page=${pageNumber}`;
 
-nextPageBtn.addEventListener('click', async () => {
-    changePage(pageCounter += 1, apiURL, personTemplateFunc);
-});
+    let firstApiInfo = await apiFetch(apiURL(1));
+    renderApiInfo(firstApiInfo, template);
 
-previousPageBtn.addEventListener('click', async () => {
-    changePage(pageCounter -= 1, apiURL, personTemplateFunc);
-});
+    document.querySelector('#nextPage').addEventListener('click', async () => {
+        changePage(pageCounter += 1, apiURL, template);
+    });
+
+    document.querySelector('#previousPage').addEventListener('click', async () => {
+        changePage(pageCounter -= 1, apiURL, template);
+    });
+}
+
 
 function personTemplateFunc(person) {
     if (naArray.includes(person.gender)) {
@@ -31,9 +30,8 @@ function personTemplateFunc(person) {
         yearTitle = "Year of Birth:"
     }
 
-    return template = 
-    `<div class="tile">
-        <img class="personImg" src="../placeholder75x75.png" alt="Picture of ${person.name}">
+    return `<div class="tile">
+    <!-- <img class="personImg" src="../placeholder75x75.png" alt="Picture of ${person.name}"> -->
         <p class="personName">${person.name}</p>
         <p class="personHeight">Height: ${person.height} cm</p>
         <p class="personWeight">Weight: ${person.mass} kg</p>

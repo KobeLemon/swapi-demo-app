@@ -2,7 +2,7 @@ const contentBox = document.querySelector('.contentBox');
 
 export function headerRender(location) {
     const parentLocation = document.querySelector('#header');
-    contentBox.innerHTML = '<em>Loading Page # 1...</em>';
+    contentBox.innerHTML = `<em>Loading Page # 1...</em>`;
     
     let template =
         `<h1>${location} of Star Wars</h1>
@@ -20,12 +20,13 @@ export function headerRender(location) {
 }
 
 export async function apiFetch(url) {
-    console.log('entered apiFetch');
+    // console.log(url);
+    // console.log('entered apiFetch');
     try {
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
-            console.log(data);
+            // console.log(data);
             return data;
         } else {
             throw new Error(await response.text);
@@ -36,24 +37,29 @@ export async function apiFetch(url) {
 }
 
 export function renderApiInfo(apiInfo, templateFunc) {
-    console.log("entered renderApiInfo");
-    console.log(apiInfo);
-    console.log(`previous page: ${apiInfo.previous}`);
-    console.log(`next page: ${apiInfo.next}`);
+    // console.log("entered renderApiInfo");
+    // console.log(apiInfo);
+    // console.log(`previous page: ${apiInfo.previous}`);
+    // console.log(`next page: ${apiInfo.next}`);
 
     contentBox.innerHTML = '';
+    console.log(apiInfo);
+    console.log(apiInfo.previous);
+    console.log(document.querySelector('#previousPage'))
+    // console.log(document.querySelector('#previousPage').classList.remove('displayNone'));
 
-    const nextPageBtn = document.querySelector('#nextPage'); 
-    const previousPageBtn = document.querySelector('#previousPage');
-    if (apiInfo.previous != null) {
-        previousPageBtn.style.display = 'block'; 
+    if (apiInfo.previous !== null) {
+        document.querySelector('#previousPage').classList.toggle('displayNone');
+        // document.querySelector('#nextPage').classList.toggle('displayNone');
     }  
-    if (apiInfo.next != null) {
-        nextPageBtn.style.display = 'block'; 
+    if (apiInfo.next == null) {
+        // document.querySelector('#previousPage').classList.remove('displayNone');
+        document.querySelector('#nextPage').classList.toggle('displayNone');
     }
 
     apiInfo.results.forEach((item) => {
-        // console.log(item);
+        // console.log('apiInfoResults foreach:');
+        // console.log(item.hair_color);
         const template = templateFunc(item);
         // console.log(template);
         contentBox.insertAdjacentHTML('beforeend', template);
@@ -63,26 +69,25 @@ export function renderApiInfo(apiInfo, templateFunc) {
     document.addEventListener('click', () => {document.querySelector('#header').scrollIntoView({behavior: "smooth"})});
 }
 
-// desiredPage arg must be 'previous' or 'next'
 export async function changePage(pageCounter, apiURL, templateFunc) {
     let pageNum = pageCounter;
-    console.log(`pageCounter: ${pageNum}`);
-    document.querySelector('#previousPage').style.display = 'none';
+    // console.log(`pageCounter: ${pageNum}`);
+    document.querySelector('#pagesBox').classList.toggle('displayNone');
     document.querySelector('#currentPage').innerText = pageNum;
-    document.querySelector('#nextPage').style.display = 'none';
     contentBox.innerHTML = `<em>Loading Page # ${pageNum}...</em>`;
     const newApiInfo = await apiFetch(apiURL(pageNum));
+    document.querySelector('#pagesBox').classList.toggle('displayNone');
     renderApiInfo(newApiInfo, templateFunc);
 }
 
 export function capitalizeSentence(sentence) {
     let string = sentence.split(' ');
-    let newString = [];
-    string.forEach(item => {
+    let newString = []
+    string.forEach( (item) => {
         let itemSplit = item.split('');
-        itemSplit[0] = itemSplit[0].toUpperCase(); // this line has a bug with something in the planets api json. It thinks .toUpperCase() is undefined
-        let itemJoin = itemSplit.join('');
-        newString.push(itemJoin);
+        itemSplit[0] = itemSplit[0].toUpperCase();
+        let itemJoin = itemSplit.join('')
+        newString.push(itemJoin)
     })
     return newString = newString.join(' ');
 }

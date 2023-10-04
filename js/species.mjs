@@ -1,31 +1,28 @@
 import { headerRender, apiFetch, renderApiInfo, changePage, capitalizeSentence } from './utils.mjs';
 headerRender('Species');
 
-let template;
-const contentBox = document.querySelector('.contentBox');
-console.log(contentBox);
-
 let pageCounter = 1;
-let apiURL = (pageNumber) => `https://swapi.dev/api/species/?page=${pageNumber}`;
 
-let firstApiInfo = await apiFetch(apiURL(1));
-renderApiInfo(firstApiInfo, speciesTemplateFunc);
+main(speciesTemplateFunc);
 
-const previousPageBtn = document.querySelector('#previousPage');
-const nextPageBtn = document.querySelector('#nextPage');
+async function main(template) {
+    let apiURL = (pageNumber) => `https://swapi.dev/api/species/?page=${pageNumber}`;
 
-nextPageBtn.addEventListener('click', async () => {
-    changePage(pageCounter += 1, apiURL, speciesTemplateFunc);
-});
+    let firstApiInfo = await apiFetch(apiURL(1));
+    renderApiInfo(firstApiInfo, speciesTemplateFunc);
 
-previousPageBtn.addEventListener('click', async () => {
-    changePage(pageCounter -= 1, apiURL, speciesTemplateFunc);
-});
+    document.querySelector('#nextPage').addEventListener('click', async () => {
+        changePage(pageCounter += 1, apiURL, speciesTemplateFunc);
+    });
+
+    document.querySelector('#previousPage').addEventListener('click', async () => {
+        changePage(pageCounter -= 1, apiURL, speciesTemplateFunc);
+    });
+}
 
 function speciesTemplateFunc(species) {
-    return template = 
-    `<div class="tile">
-        <img class="speciesImg" src="../placeholder75x75.png" alt="Picture of ${species.name}">
+    return `<div class="tile">
+    <!-- <img class="speciesImg" src="../placeholder75x75.png" alt="Picture of ${species.name}"> -->
         <p class="speciesName">${capitalizeSentence(species.name)}</p>
         <p class="speciesClass">Class: ${capitalizeSentence(species.classification)}</p>
         <p class="speciesDesig">Designation: ${capitalizeSentence(species.designation)}</p>
