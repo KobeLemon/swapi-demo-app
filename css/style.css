@@ -1,3 +1,125 @@
+html {
+    /* background-color: black; */
+}
+
 .displayNone {
     display: none;
+}
+
+body,
+main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 95%;
+    margin: auto;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    width: fit-content;
+}
+
+.mainPageBox,
+nav {
+    display: flex;
+    gap: 2rem;
+}
+
+h1 {
+    background-color: gold;
+    text-align: center;
+    width: fit-content;
+    padding: 0.5rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+.mainPageBox > a ,
+nav > a,
+.pagesBtns,
+.backToTopBtn {
+    background-color: gold;
+    height: fit-content;
+    width: fit-content;
+    padding: 0.75rem;
+    color: black;
+    /* box-shadow: ; */
+}
+
+/* Standarized Card Style */
+.mainPageBox > a ,
+nav > a,
+.pagesBtns, 
+h1,
+.tile,
+.backToTopBtn {
+    border-radius: 0.5rem;
+    border: 2px solid black;
+    /* color: black; */
+    /* box-shadow: ; */
+}
+
+
+nav > a > h2{
+    font-size: 1.25rem;
+}
+
+h2 {
+    margin: 0px;
+}
+
+.authorCredit {
+    text-align: center;
+}
+
+#pagesBox {
+    display: flex;
+    margin-top: 1rem;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* .contentBox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-around;
+    margin: 1rem 0rem;
+} */
+
+.contentBox {
+    display: grid;
+    grid-template-columns: repeat(3, 225px);
+    gap: 3rem;
+    margin: 1rem 0rem;
+    justify-content: center;
+    /* text-align: center; */
+}
+
+.tile {
+    background-color: gold;
+    padding: 0.25rem;
+    width: 225px;
+    justify-content: center;
+}
+
+.tile > p {
+    text-align: center;
+}
+
+.itemName {
+    font-size: 1.25rem;
+}
+
+#loadingPageNum {
+    grid-column: 2 / span 1;
+    /* width: fit-content; */
+    text-align: center;
 }

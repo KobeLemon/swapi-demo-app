@@ -23,7 +23,7 @@ async function main(template) {
 function speciesTemplateFunc(species) {
     return `<div class="tile">
     <!-- <img class="speciesImg" src="../placeholder75x75.png" alt="Picture of ${species.name}"> -->
-        <p class="speciesName">${capitalizeSentence(species.name)}</p>
+        <p class="itemName speciesName"><strong>${capitalizeSentence(species.name)}</strong></p>
         <p class="speciesClass">Class: ${capitalizeSentence(species.classification)}</p>
         <p class="speciesDesig">Designation: ${capitalizeSentence(species.designation)}</p>
         <p class="speciesAvgHeight">Average Height: ${species.average_height} cm</p>

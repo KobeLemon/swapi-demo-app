@@ -23,7 +23,7 @@ async function main(template) {
 function filmTemplateFunc(film) {
     return `<div class="tile">
     <!-- <img class="filmImg" src="../placeholder75x75.png" alt="Picture of ${film.name}"> -->
-        <p class="filmTitle">${film.title}</p>
+        <p class="itemName filmTitle"><strong>${film.title}</strong></p>
         <p class="filmEpisodeID">Episode # ${film.episode_id}</p>
         <p class="filmDirector">Director: ${film.director}</p>
         <p class="filmProducer">Producer(s): ${film.producer}</p>

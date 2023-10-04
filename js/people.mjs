@@ -25,14 +25,14 @@ async function main(template) {
 
 function personTemplateFunc(person) {
     if (naArray.includes(person.gender)) {
-        yearTitle = "Year of Creation:"
+        yearTitle = "Creation:"
     } else {
-        yearTitle = "Year of Birth:"
+        yearTitle = "Birth:"
     }
 
     return `<div class="tile">
     <!-- <img class="personImg" src="../placeholder75x75.png" alt="Picture of ${person.name}"> -->
-        <p class="personName">${person.name}</p>
+        <p class="itemName personName"><strong>${person.name}</strong></p>
         <p class="personHeight">Height: ${person.height} cm</p>
         <p class="personWeight">Weight: ${person.mass} kg</p>
         <p class="personHairColor">Hair Color: ${capitalizeSentence(person.hair_color)}</p>

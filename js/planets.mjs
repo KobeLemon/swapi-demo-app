@@ -1,3 +1,4 @@
+// PAGE 2 OF PLANETS: GAP DOES NOT WORK FOR SOME REASON
 import { headerRender, apiFetch, renderApiInfo, changePage, capitalizeSentence } from './utils.mjs';
 headerRender('Planets');
 
@@ -23,13 +24,13 @@ async function main(template) {
 function planetTemplateFunc(planet) {
     return `<div class="tile">
     <!-- <img class="planetImg" src="../placeholder75x75.png" alt="Picture of ${planet.name}"> -->
-        <p class="planetName">${planet.name}</p>
+        <p class="itemName planetName"><strong>${planet.name}</strong></p>
         <p class="planetDay">Day: ${planet.rotation_period} hours</p>
         <p class="planetYear">Year: ${planet.orbital_period} days</p>
         <p class="planetDiameter">Diameter: ${planet.diameter} km</p>
-        <p class="planetClimate">Climate: ${capitalizeSentence(planet.climate)}</p>
-        <p class="planetGravity">Gravity: ${capitalizeSentence(planet.gravity)}</p>
-        <p class="planetTerrain">Terrain: ${capitalizeSentence(planet.terrain)}</p>
+        <p class="planetClimate">Climate: ${planet.climate}</p>
+        <p class="planetGravity">Gravity: ${planet.gravity}</p>
+        <p class="planetTerrain">Terrain: ${planet.terrain}</p>
         <p class="planetPopulation">Population: ${planet.population}</p>
     </div>`
 }
