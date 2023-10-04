@@ -6,79 +6,20 @@
     <meta name="author" content="Kobe Lemon">
     <meta name="description" content="Demonstration of SWAPI - The Star Wars API - Species">
     <title>Star Wars API (SWAPI) Demo by Kobe Lemon - Species</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body id="mainPage">
-    <header>
-        <h1>Species of Star Wars</h1>
-    </header>
+    <header id="header"></header>
 
     <main>
-        <section id="speciesBox" class="contentBox">
-            <!-- Example Species Information -->
-            <div class="tile">
-                <img class="speciesImg" src="../placeholder75x75.png" alt="Picture of Human">
-                <p class="speciesName">Human</p>
-                <p class="speciesAvgLife">Average Lifespan: 120 years</p>
-                <p class="speciesLanguage">Language: Galactic Basic</p>
-                <p class="speciesHomeworld">Homeworld: Coruscant</p>
-                <button>Learn More!</button>
-                <p id="swapiLink">https://swapi.dev/api/species/1</p>
-            </div>
-
-            <div class="tile">
-                <img class="speciesImg" src="../placeholder75x75.png" alt="Picture of Human">
-                <p class="speciesName">Human</p>
-                <p class="speciesAvgLife">Average Lifespan: 120 years</p>
-                <p class="speciesLanguage">Language: Galactic Basic</p>
-                <p class="speciesHomeworld">Homeworld: Coruscant</p>
-                <button>Learn More!</button>
-                <p id="swapiLink">https://swapi.dev/api/species/1</p>
-            </div>
-
-            <div class="tile">
-                <img class="speciesImg" src="../placeholder75x75.png" alt="Picture of Human">
-                <p class="speciesName">Human</p>
-                <p class="speciesAvgLife">Average Lifespan: 120 years</p>
-                <p class="speciesLanguage">Language: Galactic Basic</p>
-                <p class="speciesHomeworld">Homeworld: Coruscant</p>
-                <button>Learn More!</button>
-                <p id="swapiLink">https://swapi.dev/api/species/1</p>
-            </div>
-
-            <div class="tile">
-                <img class="speciesImg" src="../placeholder75x75.png" alt="Picture of Human">
-                <p class="speciesName">Human</p>
-                <p class="speciesAvgLife">Average Lifespan: 120 years</p>
-                <p class="speciesLanguage">Language: Galactic Basic</p>
-                <p class="speciesHomeworld">Homeworld: Coruscant</p>
-                <button>Learn More!</button>
-                <p id="swapiLink">https://swapi.dev/api/species/1</p>
-            </div>
-
-            <div class="tile">
-                <img class="speciesImg" src="../placeholder75x75.png" alt="Picture of Human">
-                <p class="speciesName">Human</p>
-                <p class="speciesAvgLife">Average Lifespan: 120 years</p>
-                <p class="speciesLanguage">Language: Galactic Basic</p>
-                <p class="speciesHomeworld">Homeworld: Coruscant</p>
-                <button>Learn More!</button>
-                <p id="swapiLink">https://swapi.dev/api/species/1</p>
-            </div>
-
-            <div class="tile">
-                <img class="speciesImg" src="../placeholder75x75.png" alt="Picture of Human">
-                <p class="speciesName">Human</p>
-                <p class="speciesAvgLife">Average Lifespan: 120 years</p>
-                <p class="speciesLanguage">Language: Galactic Basic</p>
-                <p class="speciesHomeworld">Homeworld: Coruscant</p>
-                <button>Learn More!</button>
-                <p id="swapiLink">https://swapi.dev/api/species/1</p>
-            </div>
-            
-        </section>
+        <section id="pagesBox"> 
+            <button class="pagesBtns" id="previousPage" style="display: none;">← Previous Page</button>
+            <p>Page # <span id="currentPage">1</span></p>
+            <button class="pagesBtns" id="nextPage" style="display: none;">Next Page →</button>
+        </section>  
+        <section id="speciesBox" class="contentBox"></section>
         <p class="authorCredit">Credit to the author of SWAPI, Paul Hallett - <a href="https://swapi.dev/">https://swapi.dev/</a></p>
     </main>
-    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="../js/species.mjs"></script>
 </body>
 </html>
