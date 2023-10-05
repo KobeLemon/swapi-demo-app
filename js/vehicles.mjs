@@ -21,8 +21,8 @@ async function main(template) {
 }
 
 function vehicleTemplateFunc(vehicle) {
-    return `<div class="tile">
-        <!-- <img class="vehicleImg" src="../placeholder75x75.png" alt="Picture of ${vehicle.name}"> -->
+    return `<div class="tile fade-in">
+        <!-- <img class="vehicleImg" src="../images/placeholder75x75.png" alt="Picture of ${vehicle.name}"> -->
         <p class="itemName vehicleName"><strong>${capitalizeSentence(vehicle.name)}</strong></p>
         <p class="vehicleModel">Model: ${capitalizeSentence(vehicle.model)}</p>
         <p class="vehicleManufacturer">Manufacturer: ${capitalizeSentence(vehicle.manufacturer)}</p>

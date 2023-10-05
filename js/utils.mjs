@@ -1,22 +1,24 @@
 const contentBox = document.querySelector('.contentBox');
 
+const loadingPageNum = (pageCounter) => {document.querySelector('#loadingPageNum').innerHTML = `<em>Loading Page # ${pageCounter}...</em>`};
+
 export function headerRender(location) {
     const parentLocation = document.querySelector('#header');
-    contentBox.innerHTML = `<p id="loadingPageNum"><em>Loading Page # 1...</em></p>`;
+    loadingPageNum(1);
     
     let template =
         `<h1>${location} of Star Wars</h1>
         <nav>
-            <a href="../index.html"><h2>Home</h2></a>
-            <a href="../people/"><h2>People</h2></a>
-            <a href="../planets/"><h2>Planets</h2></a>
-            <a href="../films/"><h2>Films</h2></a>
-            <a href="../species/"><h2>Species</h2></a>
-            <a href="../vehicles/"><h2>Vehicles</h2></a>
-            <a href="../starships/"><h2>Starships</h2></a>
+            <h2><a href="../index.html">Home</a></h2>
+            <h2><a href="../people/">People</a></h2>
+            <h2><a href="../planets/">Planets</a></h2>
+            <h2><a href="../films/">Films</a></h2>
+            <h2><a href="../species/">Species</a></h2>
+            <h2><a href="../vehicles/">Vehicles</a></h2>
+            <h2><a href="../starships/">Starships</a></h2>
         </nav>`;
 
-    parentLocation.insertAdjacentHTML('afterbegin', template);
+    parentLocation.insertAdjacentHTML('afterbegin', template);    
 }
 
 export async function apiFetch(url) {
@@ -46,9 +48,9 @@ export function renderApiInfo(apiInfo, templateFunc) {
     const backToTopBox = document.querySelector('.backToTopBox');
     backToTopBox.innerHTML = '';
 
-    console.log(apiInfo);
-    console.log(apiInfo.previous);
-    console.log(document.querySelector('#previousPage'))
+    // console.log(apiInfo);
+    // console.log(apiInfo.previous);
+    // console.log(document.querySelector('#previousPage'))
 
     if (apiInfo.previous == null) {
         document.querySelector('#previousPage').classList.add('displayNone');
@@ -61,27 +63,34 @@ export function renderApiInfo(apiInfo, templateFunc) {
         document.querySelector('#nextPage').classList.remove('displayNone');
     }
 
-    apiInfo.results.forEach((item) => {
+    apiInfo.results.filter(item => item.name != 'unknown').forEach((item) => {
         // console.log('apiInfoResults foreach:');
         // console.log(item.hair_color);
         const template = templateFunc(item);
         // console.log(template);
         contentBox.insertAdjacentHTML('beforeend', template);
     });
+    document.querySelector('#loadingPageNum').innerHTML = '';
     backToTopBox.insertAdjacentHTML('beforeend', '<button class="backToTopBtn">Back To Top</button>');
-    document.addEventListener('click', () => {document.querySelector('#header').scrollIntoView({behavior: "smooth"})});
+    backToTopBox.addEventListener('click', () => {document.querySelector('#header').scrollIntoView({behavior: "smooth"})});
 }
 
-export async function changePage(pageCounter, apiURL, templateFunc) {
-    if (pageCounter <= 0) {
-        pageCounter = 1;
-    }
-    let pageNum = pageCounter;
-    // console.log(`pageCounter: ${pageNum}`);
-    document.querySelector('#currentPage').innerText = pageNum;
-    contentBox.innerHTML = `<p id="loadingPageNum"><em>Loading Page # ${pageNum}...</em></p>`;
-    const newApiInfo = await apiFetch(apiURL(pageNum));
+export async function changePage(pageCounter, apiURL, templateFunc, nextPageFunc) {
+    document.querySelector('#nextPage').disabled = true;
+    document.querySelector('#previousPage').disabled = true
+    contentBox.innerHTML = '';
+    // if (pageCounter <= 0) {
+    //     pageCounter = 1;
+    // }
+    // console.log(`pageCounter: ${pageCounter}`);
+    document.querySelector('#currentPage').innerText = pageCounter;
+    // document.querySelector('#loadingPageNum').innerHTML = `<em>Loading Page # ${pageCounter}...</em>`;
+    loadingPageNum(pageCounter);
+    const newApiInfo = await apiFetch(apiURL(pageCounter));
     renderApiInfo(newApiInfo, templateFunc);
+    document.querySelector('#loadingPageNum').innerHTML = '';
+    document.querySelector('#nextPage').disabled = false;
+    document.querySelector('#previousPage').disabled = false;
 }
 
 export function capitalizeSentence(sentence) {

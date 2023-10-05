@@ -21,8 +21,8 @@ async function main(template) {
 }
 
 function filmTemplateFunc(film) {
-    return `<div class="tile">
-    <!-- <img class="filmImg" src="../placeholder75x75.png" alt="Picture of ${film.name}"> -->
+    return `<div class="tile fade-in">
+    <!-- <img class="filmImg" src="../images/placeholder75x75.png" alt="Picture of ${film.name}"> -->
         <p class="itemName filmTitle"><strong>${film.title}</strong></p>
         <p class="filmEpisodeID">Episode # ${film.episode_id}</p>
         <p class="filmDirector">Director: ${film.director}</p>

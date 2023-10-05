@@ -21,8 +21,8 @@ async function main(template) {
 }
 
 function starshipTemplateFunc(starship) {
-    return `<div class="tile">
-        <!-- <img class="starshipImg" src="../placeholder75x75.png" alt="Picture of ${starship.name}"> -->
+    return `<div class="tile fade-in">
+        <!-- <img class="starshipImg" src="../images/placeholder75x75.png" alt="Picture of ${starship.name}"> -->
             <p class="itemName starshipName"><strong>${capitalizeSentence(starship.name)}</strong></p>
             <p class="starshipModel">Model: ${capitalizeSentence(starship.model)}</p>
             <p class="starshipManufacturer">Manufacturer: ${capitalizeSentence(starship.manufacturer)}</p>

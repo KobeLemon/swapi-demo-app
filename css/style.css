@@ -1,5 +1,5 @@
 html {
-    /* background-color: black; */
+    background: url("../images/star-background.webp");
 }
 
 .displayNone {
@@ -24,59 +24,69 @@ header {
     width: fit-content;
 }
 
-.mainPageBox,
-nav {
+.mainPageBox {
     display: flex;
-    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 4rem;
+    justify-items: center;
+    margin: 4rem 0rem;
+    max-width: 500px;
 }
 
-h1 {
-    background-color: gold;
+.mainPageBox > h2 {
     text-align: center;
-    width: fit-content;
-    padding: 0.5rem;
+    width: 100px;
+    height: 40px
 }
 
 a {
     text-decoration: none;
 }
 
-.mainPageBox > a ,
-nav > a,
-.pagesBtns,
-.backToTopBtn {
-    background-color: gold;
-    height: fit-content;
-    width: fit-content;
-    padding: 0.75rem;
-    color: black;
-    /* box-shadow: ; */
-}
-
-/* Standarized Card Style */
-.mainPageBox > a ,
-nav > a,
+.mainPageBox > h2,
+nav > h2,
 .pagesBtns, 
 h1,
 .tile,
 .backToTopBtn {
+    background-color: gold;
+    padding: 0.5rem;
+    color: black;
     border-radius: 0.5rem;
-    border: 2px solid black;
-    /* color: black; */
-    /* box-shadow: ; */
+    border: 3px solid gold;
 }
 
+h1 {
+    text-align: center;
+    width: fit-content;
+}
 
-nav > a > h2{
-    font-size: 1.25rem;
+nav {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav > h2 {
+    font-size: 1.1rem;
+    width: 100px;
+    height: fit-content;
+    text-align: center;
 }
 
 h2 {
     margin: 0px;
 }
 
-.authorCredit {
-    text-align: center;
+.mainPageBox > h2 > a {
+    color: black;
+}
+
+nav > h2 > a {
+    color: black;
+    font-size: 1.5rem;
 }
 
 #pagesBox {
@@ -86,28 +96,38 @@ h2 {
     align-items: center;
 }
 
-/* .contentBox {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: space-around;
-    margin: 1rem 0rem;
-} */
+button,
+.pagesBtns {
+    font-weight: bold;
+}
+
+#pagesBox > p,
+#loadingPageNum,
+.authorCredit,
+.authorCredit > a {
+    font-size: 1.25rem;
+    color: white;
+    font-weight: bold;
+}
+
+.arrow {
+    font-size: 1.25rem;
+}
 
 .contentBox {
-    display: grid;
-    grid-template-columns: repeat(3, 225px);
+    display: flex;
+    flex-wrap: wrap;
     gap: 3rem;
-    margin: 1rem 0rem;
+    margin-bottom: 1rem;
     justify-content: center;
-    /* text-align: center; */
 }
 
 .tile {
-    background-color: gold;
+    /* background: radial-gradient(transparent, gold); */
+    background: radial-gradient(transparent, rgba(170, 133, 0, 0.8), rgba(255, 217, 0, 0.9));
     padding: 0.25rem;
     width: 225px;
-    justify-content: center;
+    color: white;
 }
 
 .tile > p {
@@ -118,8 +138,7 @@ h2 {
     font-size: 1.25rem;
 }
 
-#loadingPageNum {
-    grid-column: 2 / span 1;
-    /* width: fit-content; */
-    text-align: center;
+hr {
+    border: 2px solid gold;
+    width: 100%;
 }

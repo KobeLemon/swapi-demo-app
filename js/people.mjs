@@ -5,6 +5,9 @@ let yearTitle;
 const naArray = ['n/a', 'N/a,', 'n/A', 'N/A', 'na', 'NA'];
 let pageCounter = 1;
 
+const nextPageBtn = document.querySelector('#nextPage');
+const previousPageBtn = document.querySelector('#previousPage');
+
 main(personTemplateFunc);
 
 async function main(template) {
@@ -13,11 +16,11 @@ async function main(template) {
     let firstApiInfo = await apiFetch(apiURL(1));
     renderApiInfo(firstApiInfo, template);
 
-    document.querySelector('#nextPage').addEventListener('click', async () => {
+    nextPageBtn.addEventListener('click', async () => {
         changePage(pageCounter += 1, apiURL, template);
     });
 
-    document.querySelector('#previousPage').addEventListener('click', async () => {
+    previousPageBtn.addEventListener('click', async () => {
         changePage(pageCounter -= 1, apiURL, template);
     });
 }
@@ -30,8 +33,8 @@ function personTemplateFunc(person) {
         yearTitle = "Birth:"
     }
 
-    return `<div class="tile">
-    <!-- <img class="personImg" src="../placeholder75x75.png" alt="Picture of ${person.name}"> -->
+    return `<div class="tile fade-in">
+    <!-- <img class="personImg" src="../images/placeholder75x75.png" alt="Picture of ${person.name}"> -->
         <p class="itemName personName"><strong>${person.name}</strong></p>
         <p class="personHeight">Height: ${person.height} cm</p>
         <p class="personWeight">Weight: ${person.mass} kg</p>
