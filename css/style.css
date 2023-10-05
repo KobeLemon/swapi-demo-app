@@ -142,3 +142,16 @@ hr {
     border: 2px solid gold;
     width: 100%;
 }
+
+.fade-in {
+    animation: fadeIn 1s;
+}
+
+.fade-in:nth-child(1) {
+    animation-delay: 1s;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
