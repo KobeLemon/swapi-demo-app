@@ -2,7 +2,7 @@
 
 ## This project is an app that uses "SWAPI - The Star Wars API" to find & display information about various characters, planets, etc. from the Star Wars universe
 
-### Render Website Link:
+### GitHub Pages Link: <https://kobelemon.github.io/swapi-demo-app/>
 
 ### SWAPI Link: <https://swapi.dev/>
 

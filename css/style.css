@@ -1,3 +1,144 @@
+html {
+    background: url("../images/star-background.webp");
+}
+
 .displayNone {
     display: none;
+}
+
+body,
+main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 95%;
+    margin: auto;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    width: fit-content;
+}
+
+.mainPageBox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 4rem;
+    justify-items: center;
+    margin: 4rem 0rem;
+    max-width: 500px;
+}
+
+.mainPageBox > h2 {
+    text-align: center;
+    width: 100px;
+    height: 40px
+}
+
+a {
+    text-decoration: none;
+}
+
+.mainPageBox > h2,
+nav > h2,
+.pagesBtns, 
+h1,
+.tile,
+.backToTopBtn {
+    background-color: gold;
+    padding: 0.5rem;
+    color: black;
+    border-radius: 0.5rem;
+    border: 3px solid gold;
+}
+
+h1 {
+    text-align: center;
+    width: fit-content;
+}
+
+nav {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav > h2 {
+    font-size: 1.1rem;
+    width: 100px;
+    height: fit-content;
+    text-align: center;
+}
+
+h2 {
+    margin: 0px;
+}
+
+.mainPageBox > h2 > a {
+    color: black;
+}
+
+nav > h2 > a {
+    color: black;
+    font-size: 1.5rem;
+}
+
+#pagesBox {
+    display: flex;
+    margin-top: 1rem;
+    gap: 1rem;
+    align-items: center;
+}
+
+button,
+.pagesBtns {
+    font-weight: bold;
+}
+
+#pagesBox > p,
+#loadingPageNum,
+.authorCredit,
+.authorCredit > a {
+    font-size: 1.25rem;
+    color: white;
+    font-weight: bold;
+}
+
+.arrow {
+    font-size: 1.25rem;
+}
+
+.contentBox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+}
+
+.tile {
+    /* background: radial-gradient(transparent, gold); */
+    background: radial-gradient(transparent, rgba(170, 133, 0, 0.8), rgba(255, 217, 0, 0.9));
+    padding: 0.25rem;
+    width: 225px;
+    color: white;
+}
+
+.tile > p {
+    text-align: center;
+}
+
+.itemName {
+    font-size: 1.25rem;
+}
+
+hr {
+    border: 2px solid gold;
+    width: 100%;
 }

@@ -13,11 +13,14 @@
 
     <main>
         <section id="pagesBox"> 
-            <button class="pagesBtns displayNone" id="previousPage">← Previous Page</button>
+            <button class="pagesBtns displayNone" id="previousPage"><span class="arrow">&larr;</span> Previous Page</button>
             <p>Page # <span id="currentPage">1</span></p>
-            <button class="pagesBtns" id="nextPage">Next Page →</button>
+            <button class="pagesBtns displayNone" id="nextPage">Next Page <span class="arrow">&rarr;</span></button>
         </section>
+        <hr>
+        <p id="loadingPageNum"></p>
         <section id="peopleBox" class="contentBox"></section>
+        <section class="backToTopBox"></section>
         <p class="authorCredit">Credit to the author of SWAPI, Paul Hallett - <a href="https://swapi.dev/">https://swapi.dev/</a></p>
     </main>
     <script type="module" src="../js/people.mjs"></script>

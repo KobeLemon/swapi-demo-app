@@ -21,14 +21,14 @@ async function main(template) {
 }
 
 function vehicleTemplateFunc(vehicle) {
-    return `<div class="tile">
-        <!-- <img class="vehicleImg" src="../placeholder75x75.png" alt="Picture of ${vehicle.name}"> -->
-        <p class="vehicleName">${capitalizeSentence(vehicle.name)}</p>
+    return `<div class="tile fade-in">
+        <!-- <img class="vehicleImg" src="../images/placeholder75x75.png" alt="Picture of ${vehicle.name}"> -->
+        <p class="itemName vehicleName"><strong>${capitalizeSentence(vehicle.name)}</strong></p>
         <p class="vehicleModel">Model: ${capitalizeSentence(vehicle.model)}</p>
         <p class="vehicleManufacturer">Manufacturer: ${capitalizeSentence(vehicle.manufacturer)}</p>
         <p class="vehiclePrice">Price: ${vehicle.cost_in_credits} credits</p>
         <p class="vehicleLength">Length: ${vehicle.length} meters</p>
-        <p class="vehicleMaxAtmosSpd">Max Atmosphering Speed: ${vehicle.max_atmosphering_speed} MPH</p>
+        <p class="vehicleMaxAtmosSpd">Max Speed in Atmosphere: ${vehicle.max_atmosphering_speed} MPH</p>
         <p class="vehicleCrew">Crew Capacity: ${vehicle.crew}</p>
         <p class="vehicleCargo">Cargo Capacity: ${vehicle.cargo_capacity}</p>
         <p class="vehicleFood">Food Capacity: ${vehicle.consumables}</p>
