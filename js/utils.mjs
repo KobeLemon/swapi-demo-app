@@ -9,13 +9,13 @@ export function headerRender(location) {
     let template =
         `<h1>${location} of Star Wars</h1>
         <nav>
-            <h2><a href="../index.html">Home</a></h2>
-            <h2><a href="../people/">People</a></h2>
-            <h2><a href="../planets/">Planets</a></h2>
-            <h2><a href="../films/">Films</a></h2>
-            <h2><a href="../species/">Species</a></h2>
-            <h2><a href="../vehicles/">Vehicles</a></h2>
-            <h2><a href="../starships/">Starships</a></h2>
+            <a href="../index.html"><h2>Home</h2></a>
+            <a href="../people/"><h2>People</h2></a>
+            <a href="../planets/"><h2>Planets</h2></a>
+            <a href="../films/"><h2>Films</h2></a>
+            <a href="../species/"><h2>Species</h2></a>
+            <a href="../vehicles/"><h2>Vehicles</h2></a>
+            <a href="../starships/"><h2>Starships</h2></a>
         </nav>`;
 
     parentLocation.insertAdjacentHTML('afterbegin', template);    
@@ -26,6 +26,7 @@ export async function apiFetch(url) {
     // console.log('entered apiFetch');
     try {
         const response = await fetch(url);
+
         if (response.ok) {
             const data = await response.json();
             // console.log(data);
@@ -33,6 +34,7 @@ export async function apiFetch(url) {
         } else {
             throw new Error(await response.text);
         }
+
     } catch (error) {
         console.log(error);
     }
@@ -56,7 +58,8 @@ export function renderApiInfo(apiInfo, templateFunc) {
         document.querySelector('#previousPage').classList.add('displayNone');
     } else if (apiInfo.previous !== null) {
         document.querySelector('#previousPage').classList.remove('displayNone');
-    } 
+    }
+
     if (apiInfo.next == null) {
         document.querySelector('#nextPage').classList.add('displayNone');
     } else if (apiInfo.next !== null) {
@@ -70,7 +73,9 @@ export function renderApiInfo(apiInfo, templateFunc) {
         // console.log(template);
         contentBox.insertAdjacentHTML('beforeend', template);
     });
+
     document.querySelector('#loadingPageNum').innerHTML = '';
+
     backToTopBox.insertAdjacentHTML('beforeend', '<button class="backToTopBtn">Back To Top</button>');
     backToTopBox.addEventListener('click', () => {document.querySelector('#header').scrollIntoView({behavior: "smooth"})});
 }
@@ -78,16 +83,15 @@ export function renderApiInfo(apiInfo, templateFunc) {
 export async function changePage(pageCounter, apiURL, templateFunc, nextPageFunc) {
     document.querySelector('#nextPage').disabled = true;
     document.querySelector('#previousPage').disabled = true
+
     contentBox.innerHTML = '';
-    // if (pageCounter <= 0) {
-    //     pageCounter = 1;
-    // }
     // console.log(`pageCounter: ${pageCounter}`);
     document.querySelector('#currentPage').innerText = pageCounter;
-    // document.querySelector('#loadingPageNum').innerHTML = `<em>Loading Page # ${pageCounter}...</em>`;
     loadingPageNum(pageCounter);
+
     const newApiInfo = await apiFetch(apiURL(pageCounter));
     renderApiInfo(newApiInfo, templateFunc);
+
     document.querySelector('#loadingPageNum').innerHTML = '';
     document.querySelector('#nextPage').disabled = false;
     document.querySelector('#previousPage').disabled = false;
@@ -96,11 +100,13 @@ export async function changePage(pageCounter, apiURL, templateFunc, nextPageFunc
 export function capitalizeSentence(sentence) {
     let string = sentence.split(' ');
     let newString = []
+
     string.forEach( (item) => {
         let itemSplit = item.split('');
         itemSplit[0] = itemSplit[0].toUpperCase();
         let itemJoin = itemSplit.join('')
         newString.push(itemJoin)
     })
+    
     return newString = newString.join(' ');
 }
